@@ -10,3 +10,17 @@ studio.local.overhang.io:80 {
     reverse_proxy nginx:80
 }
 
+# Discovery
+discovery.local.overhang.io:80 {
+    reverse_proxy nginx:80
+}
+# E-commerce
+ecommerce.local.overhang.io:80 {
+    reverse_proxy nginx:80
+}
+apps.local.overhang.io:80 {
+    handle / {
+        respond 204
+    }
+    reverse_proxy mfe:8002
+}

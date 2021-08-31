@@ -24,10 +24,16 @@ services:
         # These aliases are for internal communication between containers when running locally with *.local.overhang.io hostnames.
         aliases:
           - "local.overhang.io"
-          
+          - discovery.local.overhang.io
+          - ecommerce.local.overhang.io
     
     volumes:
       - ../apps/nginx:/etc/nginx/conf.d/:ro
     depends_on: ["lms", "cms"]
 
-  
+  # MFE
+  mfe:
+      image: docker.io/overhangio/openedx-mfe:12.0.1
+      build:
+          context: ../plugins/mfe/build/mfe/
+      restart: unless-stopped

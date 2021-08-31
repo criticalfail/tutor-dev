@@ -1,5 +1,44 @@
 CMS_HOST: studio.local.overhang.io
 CONTACT_EMAIL: sgumus@kashida-learning.com
+DISCOVERY_MYSQL_PASSWORD: J49cMGFy
+DISCOVERY_OAUTH2_SECRET: eisNNIED
+DISCOVERY_OAUTH2_SECRET_SSO: SYw6wYi4
+DISCOVERY_SECRET_KEY: KBMThG2nrmJULJtowKIh
+ECOMMERCE_API_KEY: Enm9MRBsJuoJ11V3tu0W
+ECOMMERCE_ENABLED_CLIENT_SIDE_PAYMENT_PROCESSORS:
+- cybersource
+ECOMMERCE_ENABLED_PAYMENT_PROCESSORS:
+- cybersource
+- paypal
+ECOMMERCE_EXTRA_PAYMENT_PROCESSOR_CLASSES: []
+ECOMMERCE_EXTRA_PAYMENT_PROCESSOR_URLS: {}
+ECOMMERCE_MYSQL_PASSWORD: oFUpUDZJ
+ECOMMERCE_OAUTH2_SECRET: siPgOS8l
+ECOMMERCE_OAUTH2_SECRET_SSO: AygCbH2Z
+ECOMMERCE_PAYMENT_PROCESSORS:
+  cybersource:
+    access_key: SET-ME-PLEASE
+    cancel_checkout_path: /checkout/cancel-checkout/
+    merchant_id: SET-ME-PLEASE
+    payment_page_url: https://testsecureacceptance.cybersource.com/pay
+    profile_id: SET-ME-PLEASE
+    receipt_page_url: /checkout/receipt/
+    secret_key: SET-ME-PLEASE
+    send_level_2_3_details: true
+    soap_api_url: https://ics2wstest.ic3.com/commerce/1.x/transactionProcessor/CyberSourceTransaction_1.140.wsdl
+    sop_access_key: SET-ME-PLEASE
+    sop_payment_page_url: https://testsecureacceptance.cybersource.com/silent/pay
+    sop_profile_id: SET-ME-PLEASE
+    sop_secret_key: SET-ME-PLEASE
+    transaction_key: SET-ME-PLEASE
+  paypal:
+    cancel_checkout_path: /checkout/cancel-checkout/
+    client_id: SET-ME-PLEASE
+    client_secret: SET-ME-PLEASE
+    error_url: /checkout/error/
+    mode: sandbox
+    receipt_url: /checkout/receipt/
+ECOMMERCE_SECRET_KEY: WdJlPov1isvYANJpaBML
 ENABLE_HTTPS: false
 ID: un6fRGsTem752gSpQsLU9M4z
 JWT_RSA_PRIVATE_KEY: '-----BEGIN RSA PRIVATE KEY-----
@@ -61,3 +100,7 @@ MYSQL_ROOT_PASSWORD: aUKid3I2
 OPENEDX_MYSQL_PASSWORD: qmudNCY1
 OPENEDX_SECRET_KEY: 6cOM7Nag34onNqtCSa5V4HWP
 PLATFORM_NAME: My Open edX
+PLUGINS:
+- discovery
+- ecommerce
+- mfe

@@ -193,7 +193,16 @@ for folder in [DATA_DIR, LOG_DIR, MEDIA_ROOT, STATIC_ROOT_BASE, ORA2_FILEUPLOAD_
     if not os.path.exists(folder):
         os.makedirs(folder)
 
-
+FEATURES["ENABLE_COURSE_DISCOVERY"] = True
+COURSE_CATALOG_API_URL = "http://discovery:8000/api/v1"
+EDX_API_KEY = "Enm9MRBsJuoJ11V3tu0W"
+ECOMMERCE_API_SIGNING_KEY = "6cOM7Nag34onNqtCSa5V4HWP"
+ECOMMERCE_API_TIMEOUT = 5
+EDX_API_KEY = "Enm9MRBsJuoJ11V3tu0W"
+ECOMMERCE_API_SIGNING_KEY = "6cOM7Nag34onNqtCSa5V4HWP"
+from babel.numbers import get_currency_symbol
+PAID_COURSE_REGISTRATION_CURRENCY = ["USD", get_currency_symbol("USD")]
+COURSE_MODE_DEFAULTS["currency"] = "USD"
 
 ######## End of common LMS settings
 
@@ -213,3 +222,19 @@ DCS_SESSION_COOKIE_SAMESITE = "Lax"
 # Required to display all courses on start page
 SEARCH_SKIP_ENROLLMENT_START_DATE_FILTERING = True
 
+ECOMMERCE_PUBLIC_URL_ROOT = "http://ecommerce.local.overhang.io"
+ECOMMERCE_API_URL = ECOMMERCE_PUBLIC_URL_ROOT + "/api/v2"
+ORDER_HISTORY_MICROFRONTEND_URL = "http://apps.local.overhang.io/ecommerce/orders"
+
+ACCOUNT_MICROFRONTEND_URL = "http://apps.local.overhang.io/account"
+
+
+WRITABLE_GRADEBOOK_URL = "http://apps.local.overhang.io/gradebook"
+
+
+PROFILE_MICROFRONTEND_URL = "http://apps.local.overhang.io/profile/u/"
+
+
+LOGIN_REDIRECT_WHITELIST.append("apps.local.overhang.io")
+CORS_ORIGIN_WHITELIST.append("apps.local.overhang.io")
+CSRF_TRUSTED_ORIGINS.append("apps.local.overhang.io")

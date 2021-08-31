@@ -1,0 +1,12 @@
+DISCOVERY_API_BASE_URL='http://discovery.local.overhang.io:8381'
+LMS_BASE_URL='http://local.overhang.io:8000'
+LOGIN_URL='http://local.overhang.io:8000/login'
+LOGO_URL='http://local.overhang.io:8000/static/images/logo.png'
+LOGO_TRADEMARK_URL='http://local.overhang.io:8000/static/images/logo.png'
+LOGOUT_URL='http://local.overhang.io:8000/logout'
+MARKETING_SITE_BASE_URL='http://local.overhang.io:8000'
+NODE_ENV=development
+REFRESH_ACCESS_TOKEN_ENDPOINT='http://local.overhang.io:8000/login_refresh'
+
+ECOMMERCE_BASE_URL='http://ecommerce.local.overhang.io:8130'
+ORDER_HISTORY_URL='http://apps.local.overhang.io:1998/payment/orders'

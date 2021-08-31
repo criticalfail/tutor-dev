@@ -164,4 +164,33 @@ services:
       - cms
   
 
-  
+  discovery:
+    image: docker.io/overhangio/openedx-discovery:12.0.1
+    environment:
+      DJANGO_SETTINGS_MODULE: course_discovery.settings.tutor.production
+    restart: unless-stopped
+    volumes:
+      - ../plugins/discovery/apps/settings/tutor:/openedx/discovery/course_discovery/settings/tutor:ro
+    depends_on: ["elasticsearch", "lms", "mysql"]
+  ecommerce:
+    image: docker.io/overhangio/openedx-ecommerce:12.0.0
+    environment:
+      DJANGO_SETTINGS_MODULE: ecommerce.settings.tutor.production
+    restart: unless-stopped
+    volumes:
+      - ../plugins/ecommerce/apps/ecommerce/settings:/openedx/ecommerce/ecommerce/settings/tutor:ro
+    depends_on:
+      - discovery
+      - mysql
+      - lms
+
+  ecommerce-worker:
+      image: docker.io/overhangio/openedx-ecommerce-worker:12.0.0
+      environment:
+        WORKER_CONFIGURATION_MODULE: ecommerce_worker.configuration.tutor.production
+        C_FORCE_ROOT: "1"
+      restart: unless-stopped
+      volumes:
+        - ../plugins/ecommerce/apps/ecommerce-worker/settings:/openedx/ecommerce_worker/ecommerce_worker/configuration/tutor:ro
+      depends_on:
+        - ecommerce

@@ -44,4 +44,138 @@ services:
     command: openedx-assets watch-themes --env dev
     restart: unless-stopped
 
-  
+  discovery:
+    environment:
+      DJANGO_SETTINGS_MODULE: course_discovery.settings.tutor.development
+    command: ./manage.py runserver 0.0.0.0:8381
+    ports:
+      - "8381:8381"
+    networks:
+      default:
+        aliases:
+          - "discovery.local.overhang.io"
+  ecommerce:
+    environment:
+      DJANGO_SETTINGS_MODULE: ecommerce.settings.tutor.development
+    command: ./manage.py runserver 0.0.0.0:8130
+    ports:
+      - "127.0.0.1:8130:8130"
+    volumes:
+      # editable requirements
+      - ../plugins/ecommerce/build/ecommerce/requirements:/openedx/requirements
+    networks:
+      default:
+        aliases:
+          - "ecommerce.local.overhang.io"
+  # MFE apps
+
+  ecommerce:
+      image: ecommerce
+      build:
+          context: ../plugins/mfe/build/mfe/
+          target: ecommerce-dev
+      ports:
+          - "127.0.0.1:1996:1996"
+      
+      
+      command: [
+          "webpack-dev-server", "--config=./node_modules/@edx/frontend-build/config/webpack.dev.config.js", "--progress",
+          "--disable-host-check", "--output-public-path=/ecommerce/",
+          "--history-api-fallback=ecommerce/index.html"
+      ]
+      env_file:
+          - ../plugins/mfe/build/mfe/env/production
+          - ../plugins/mfe/build/mfe/env/development
+      
+
+  payment:
+      image: payment
+      build:
+          context: ../plugins/mfe/build/mfe/
+          target: payment-dev
+      ports:
+          - "127.0.0.1:1998:1998"
+      
+      
+      command: [
+          "webpack-dev-server", "--config=./node_modules/@edx/frontend-build/config/webpack.dev.config.js", "--progress",
+          "--disable-host-check", "--output-public-path=/payment/",
+          "--history-api-fallback=payment/index.html"
+      ]
+      env_file:
+          - ../plugins/mfe/build/mfe/env/production
+          - ../plugins/mfe/build/mfe/env/development
+      
+      environment:
+      
+          - "SUPPORT_URL=http://local.overhang.io/contact"
+      
+      
+          - "SUPPORT_URL=http://local.overhang.io:8000/contact"
+      
+      
+
+  account:
+      image: account
+      build:
+          context: ../plugins/mfe/build/mfe/
+          target: account-dev
+      ports:
+          - "127.0.0.1:1997:1997"
+      
+      
+      command: [
+          "webpack-dev-server", "--config=./node_modules/@edx/frontend-build/config/webpack.dev.config.js", "--progress",
+          "--disable-host-check", "--output-public-path=/account/",
+          "--history-api-fallback=account/index.html"
+      ]
+      env_file:
+          - ../plugins/mfe/build/mfe/env/production
+          - ../plugins/mfe/build/mfe/env/development
+      
+      environment:
+      
+          - "COACHING_ENABLED="
+      
+          - "ENABLE_DEMOGRAPHICS_COLLECTION="
+      
+      
+      
+
+  gradebook:
+      image: gradebook
+      build:
+          context: ../plugins/mfe/build/mfe/
+          target: gradebook-dev
+      ports:
+          - "127.0.0.1:1994:1994"
+      
+      
+      command: [
+          "webpack-dev-server", "--config=./node_modules/@edx/frontend-build/config/webpack.dev.config.js", "--progress",
+          "--disable-host-check", "--output-public-path=/gradebook/",
+          "--history-api-fallback=gradebook/index.html"
+      ]
+      env_file:
+          - ../plugins/mfe/build/mfe/env/production
+          - ../plugins/mfe/build/mfe/env/development
+      
+
+  profile:
+      image: profile
+      build:
+          context: ../plugins/mfe/build/mfe/
+          target: profile-dev
+      ports:
+          - "127.0.0.1:1995:1995"
+      
+      
+      command: [
+          "webpack-dev-server", "--config=./node_modules/@edx/frontend-build/config/webpack.dev.config.js", "--progress",
+          "--disable-host-check", "--output-public-path=/profile/",
+          "--history-api-fallback=profile/index.html"
+      ]
+      env_file:
+          - ../plugins/mfe/build/mfe/env/production
+          - ../plugins/mfe/build/mfe/env/development
+      

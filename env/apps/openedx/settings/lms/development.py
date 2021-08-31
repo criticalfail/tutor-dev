@@ -193,7 +193,16 @@ for folder in [DATA_DIR, LOG_DIR, MEDIA_ROOT, STATIC_ROOT_BASE, ORA2_FILEUPLOAD_
     if not os.path.exists(folder):
         os.makedirs(folder)
 
-
+FEATURES["ENABLE_COURSE_DISCOVERY"] = True
+COURSE_CATALOG_API_URL = "http://discovery:8000/api/v1"
+EDX_API_KEY = "Enm9MRBsJuoJ11V3tu0W"
+ECOMMERCE_API_SIGNING_KEY = "6cOM7Nag34onNqtCSa5V4HWP"
+ECOMMERCE_API_TIMEOUT = 5
+EDX_API_KEY = "Enm9MRBsJuoJ11V3tu0W"
+ECOMMERCE_API_SIGNING_KEY = "6cOM7Nag34onNqtCSa5V4HWP"
+from babel.numbers import get_currency_symbol
+PAID_COURSE_REGISTRATION_CURRENCY = ["USD", get_currency_symbol("USD")]
+COURSE_MODE_DEFAULTS["currency"] = "USD"
 
 ######## End of common LMS settings
 
@@ -219,3 +228,40 @@ LOGGING["loggers"]["oauth2_provider"] = {
 }
 
 
+ECOMMERCE_PUBLIC_URL_ROOT = "http://ecommerce.local.overhang.io:8130"
+ECOMMERCE_API_URL = ECOMMERCE_PUBLIC_URL_ROOT + "/api/v2"
+
+ACCOUNT_MICROFRONTEND_URL = "http://apps.local.overhang.io:1997/account"
+
+
+WRITABLE_GRADEBOOK_URL = "http://apps.local.overhang.io:1994/gradebook"
+
+
+PROFILE_MICROFRONTEND_URL = "http://apps.local.overhang.io:1995/profile/u/"
+
+
+
+# ecommerce MFE
+CORS_ORIGIN_WHITELIST.append("apps.local.overhang.io:1996")
+LOGIN_REDIRECT_WHITELIST.append("apps.local.overhang.io:1996")
+CSRF_TRUSTED_ORIGINS.append("apps.local.overhang.io:1996")
+
+# payment MFE
+CORS_ORIGIN_WHITELIST.append("apps.local.overhang.io:1998")
+LOGIN_REDIRECT_WHITELIST.append("apps.local.overhang.io:1998")
+CSRF_TRUSTED_ORIGINS.append("apps.local.overhang.io:1998")
+
+# account MFE
+CORS_ORIGIN_WHITELIST.append("apps.local.overhang.io:1997")
+LOGIN_REDIRECT_WHITELIST.append("apps.local.overhang.io:1997")
+CSRF_TRUSTED_ORIGINS.append("apps.local.overhang.io:1997")
+
+# gradebook MFE
+CORS_ORIGIN_WHITELIST.append("apps.local.overhang.io:1994")
+LOGIN_REDIRECT_WHITELIST.append("apps.local.overhang.io:1994")
+CSRF_TRUSTED_ORIGINS.append("apps.local.overhang.io:1994")
+
+# profile MFE
+CORS_ORIGIN_WHITELIST.append("apps.local.overhang.io:1995")
+LOGIN_REDIRECT_WHITELIST.append("apps.local.overhang.io:1995")
+CSRF_TRUSTED_ORIGINS.append("apps.local.overhang.io:1995")

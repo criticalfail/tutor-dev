@@ -50,5 +50,13 @@ configMapGenerator:
 - name: redis-config
   files:
   - apps/redis/redis.conf
-
+- name: discovery-settings
+  files:
+    - plugins/discovery/apps/settings/tutor/production.py
+- name: ecommerce-settings
+  files:
+    - plugins/ecommerce/apps/ecommerce/settings/production.py
+- name: ecommerce-worker-settings
+  files:
+    - plugins/ecommerce/apps/ecommerce-worker/settings/production.py
 

@@ -103,3 +103,54 @@ spec:
           - name: MONGODB_DATABASE
             value: "cs_comments_service"
 
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: discovery-job
+  labels:
+    app.kubernetes.io/component: job
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: discovery
+          image: docker.io/overhangio/openedx-discovery:12.0.1
+          env:
+            - name: DJANGO_SETTINGS_MODULE
+              value: course_discovery.settings.tutor.production
+          volumeMounts:
+            - mountPath: /openedx/discovery/course_discovery/settings/tutor/production.py
+              name: settings
+              subPath: production.py
+      volumes:
+        - name: settings
+          configMap:
+            name: discovery-settings
+
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ecommerce-job
+  labels:
+    app.kubernetes.io/component: job
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: ecommerce
+          image: docker.io/overhangio/openedx-ecommerce:12.0.0
+          env:
+            - name: DJANGO_SETTINGS_MODULE
+              value: ecommerce.settings.tutor.production
+          volumeMounts:
+            - mountPath: /openedx/ecommerce/ecommerce/settings/tutor/production.py
+              name: settings
+              subPath: production.py
+      volumes:
+        - name: settings
+          configMap:
+            name: ecommerce-settings

@@ -1,0 +1,53 @@
+:8002 {
+    
+    @mfe_ecommerce {
+        path /ecommerce /ecommerce/*
+    }
+    handle @mfe_ecommerce {
+        uri strip_prefix /ecommerce
+        root * /openedx/dist/ecommerce
+        try_files /{path} /index.html
+        file_server
+    }
+    
+    @mfe_payment {
+        path /payment /payment/*
+    }
+    handle @mfe_payment {
+        uri strip_prefix /payment
+        root * /openedx/dist/payment
+        try_files /{path} /index.html
+        file_server
+    }
+    
+    @mfe_account {
+        path /account /account/*
+    }
+    handle @mfe_account {
+        uri strip_prefix /account
+        root * /openedx/dist/account
+        try_files /{path} /index.html
+        file_server
+    }
+    
+    @mfe_gradebook {
+        path /gradebook /gradebook/*
+    }
+    handle @mfe_gradebook {
+        uri strip_prefix /gradebook
+        root * /openedx/dist/gradebook
+        try_files /{path} /index.html
+        file_server
+    }
+    
+    @mfe_profile {
+        path /profile /profile/*
+    }
+    handle @mfe_profile {
+        uri strip_prefix /profile
+        root * /openedx/dist/profile
+        try_files /{path} /index.html
+        file_server
+    }
+    
+}
