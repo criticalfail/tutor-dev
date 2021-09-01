@@ -18,7 +18,7 @@ NODE_ENV=production
 PUBLISHER_BASE_URL=''
 REFRESH_ACCESS_TOKEN_ENDPOINT='http://local.overhang.io/login_refresh'
 SEGMENT_KEY=''
-SITE_NAME='My Open edX'
+SITE_NAME='Tutor Dev Local'
 STUDIO_BASE_URL='http://studio.local.overhang.io'
 USER_INFO_COOKIE_NAME='user-info'
 

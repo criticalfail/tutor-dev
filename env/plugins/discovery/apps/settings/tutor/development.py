@@ -6,7 +6,7 @@ ALLOWED_HOSTS = [
     "discovery.local.overhang.io"
 ]
 
-PLATFORM_NAME = "My Open edX"
+PLATFORM_NAME = "Tutor Dev Local"
 
 DATABASES = {
     "default": {

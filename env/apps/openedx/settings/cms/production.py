@@ -40,7 +40,7 @@ ELASTIC_SEARCH_CONFIG = [{
   "port": 9200,
 }]
 
-CONTACT_MAILING_ADDRESS = "My Open edX - http://local.overhang.io"
+CONTACT_MAILING_ADDRESS = "Tutor Dev Local - http://local.overhang.io"
 
 DEFAULT_FROM_EMAIL = ENV_TOKENS.get("DEFAULT_FROM_EMAIL", ENV_TOKENS["CONTACT_EMAIL"])
 DEFAULT_FEEDBACK_EMAIL = ENV_TOKENS.get("DEFAULT_FEEDBACK_EMAIL", ENV_TOKENS["CONTACT_EMAIL"])
@@ -172,7 +172,7 @@ FEATURES["LTI_1P3_ENABLED"] = True
 
 ######## Common CMS settings
 
-STUDIO_NAME = u"My Open edX - Studio"
+STUDIO_NAME = u"Tutor Dev Local - Studio"
 MAX_ASSET_UPLOAD_FILE_SIZE_IN_MB = 100
 
 FRONTEND_LOGIN_URL = LMS_ROOT_URL + '/login'

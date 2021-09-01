@@ -7,7 +7,7 @@ ALLOWED_HOSTS = [
     "ecommerce.local.overhang.io",
     "ecommerce",
 ]
-PLATFORM_NAME = "My Open edX"
+PLATFORM_NAME = "Tutor Dev Local"
 PROTOCOL = "http"
 
 CORS_ALLOW_CREDENTIALS = True
